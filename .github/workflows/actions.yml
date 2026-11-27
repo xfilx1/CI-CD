@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  app:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Install Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '11'
+      
+      - name: Clone project
+        uses: actions/checkout@v7
+
+      - name: Build and test
+        run: mvn package
+ 
